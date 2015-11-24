@@ -19,40 +19,63 @@ import java.awt.event.MouseEvent;
  */
 class Snek extends Environment {
 
-    Grid grid;
+    private Grid grid;
+    private Presidential bob;
+    
 
     public Snek() {
-        grid = new Grid(25, 25, 20, 20, new Point(10, 50), Color.yellow);
+        
+        
+        
+        
+        grid = new Grid(25, 25, 20, 20, new Point(10, 50), Color.BLACK);
+        bob = new Presidential(Direction.LEFT, grid);
     }
 
     @Override
     public void initializeEnvironment() {
-    }
+    }            
 
-    int counter;
+    int moveDelay = 0;
+    int moveDelayLimit = 3;
 
     @Override
     public void timerTaskHandler() {
 //        System.out.println("Hey" + ++counter);
+        
+        if (bob != null) {
+            if (moveDelay >= moveDelayLimit) {
+                bob.move();
+                moveDelay = 0;
+                
+            }else{
+                moveDelay++;
+            }
+            
+        }
     }
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
         
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            System.out.println("Go left");
+            bob.setDirection(Direction.LEFT);
+            bob.move();
         }
         
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println("Go right");
+            bob.setDirection(Direction.RIGHT);
+            bob.move();
         }
         
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            System.out.println("Go up");
+            bob.setDirection(Direction.UP);
+            bob.move();
         }
         
         else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            System.out.println("Go down");
+            bob.setDirection(Direction.DOWN);
+            bob.move();
         }
     }
 
@@ -83,6 +106,12 @@ class Snek extends Environment {
     public void paintEnvironment(Graphics graphics) {
         if (grid != null) {
             grid.paintComponent(graphics);
+            
+            
+        }
+        
+        if (bob != null){
+            bob.draw(graphics);
         }
     }
 
