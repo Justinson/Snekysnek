@@ -16,10 +16,12 @@ import java.util.ArrayList;
  * @author Justinson
  */
 public class Presidential {
+    private final MoveValidatorIntf validator;
 
-    public Presidential(Direction direction, Grid grid) {
+    public Presidential(Direction direction, Grid grid, MoveValidatorIntf validator) {
         this.direction = direction;
         this.grid = grid;
+        this.validator = validator;
 
         //create the body of the snake
         body = new ArrayList<>();
@@ -65,21 +67,23 @@ public class Presidential {
         } else if (getDirection() == Direction.UP) {
             newHead.y--;
         }
-
-        getBody().add(HEAD_POSITION, newHead);
+        //add new head
+        body.add(HEAD_POSITION, validator.validateMove(newHead));
 
         //DELETE TAIL
-        getBody().remove(getBody().size() - 1);
+        body.remove(body.size() - 1);
 
     }
 
     public Point getHead() {
-        return getBody().get(0);
+        return getBody().get(HEAD_POSITION);
     }
 
     /**
      * @return the direction
      */
+    
+    
     public Direction getDirection() {
         return direction;
     }
