@@ -19,6 +19,7 @@ public class Presidential {
     private final MoveValidatorIntf validator;
 
     public Presidential(Direction direction, Grid grid, MoveValidatorIntf validator) {
+        
         this.direction = direction;
         this.grid = grid;
         this.validator = validator;
