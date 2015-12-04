@@ -90,31 +90,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         barriers.add(new Barrier(0, 23, Color.WHITE, this));
         barriers.add(new Barrier(0, 24, Color.WHITE, this));
 
-        barriers.add(new Barrier(24, 0, Color.BLUE, this));
-        barriers.add(new Barrier(24, 1, Color.BLUE, this));
-        barriers.add(new Barrier(24, 2, Color.BLUE, this));
-        barriers.add(new Barrier(24, 3, Color.BLUE, this));
-        barriers.add(new Barrier(24, 4, Color.BLUE, this));
-        barriers.add(new Barrier(24, 5, Color.BLUE, this));
-        barriers.add(new Barrier(24, 6, Color.BLUE, this));
-        barriers.add(new Barrier(24, 7, Color.BLUE, this));
-        barriers.add(new Barrier(24, 8, Color.BLUE, this));
-        barriers.add(new Barrier(24, 9, Color.BLUE, this));
-        barriers.add(new Barrier(24, 10, Color.BLUE, this));
-        barriers.add(new Barrier(24, 11, Color.BLUE, this));
-        barriers.add(new Barrier(24, 12, Color.BLUE, this));
-        barriers.add(new Barrier(24, 13, Color.BLUE, this));
-        barriers.add(new Barrier(24, 14, Color.BLUE, this));
-        barriers.add(new Barrier(24, 15, Color.BLUE, this));
-        barriers.add(new Barrier(24, 16, Color.BLUE, this));
-        barriers.add(new Barrier(24, 17, Color.BLUE, this));
-        barriers.add(new Barrier(24, 18, Color.BLUE, this));
-        barriers.add(new Barrier(24, 19, Color.BLUE, this));
-        barriers.add(new Barrier(24, 20, Color.BLUE, this));
-        barriers.add(new Barrier(24, 21, Color.BLUE, this));
-        barriers.add(new Barrier(24, 22, Color.BLUE, this));
-        barriers.add(new Barrier(24, 23, Color.BLUE, this));
-        barriers.add(new Barrier(24, 24, Color.GREEN, this));
+     
 
        
         barriers.add(new Barrier(24, 1, Color.RED, this));

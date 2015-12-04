@@ -48,6 +48,7 @@ public class Presidential {
                     getGrid().getCellSystemCoordinate(getBody().get(i)).y,
                     getGrid().getCellWidth(),
                     getGrid().getCellHeight());
+            
 
         }
 
@@ -74,6 +75,7 @@ public class Presidential {
         //DELETE TAIL
         body.remove(body.size() - 1);
 
+        
     }
 
     public Point getHead() {
