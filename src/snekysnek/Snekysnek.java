@@ -6,6 +6,7 @@
 package snekysnek;
 
 import environment.ApplicationStarter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,9 @@ public class Snekysnek {
     public static void main(String[] args) {
         // TODO code application logic here
         ApplicationStarter.run("Snake", new Snek());
+//        JOptionPane.showMessageDialog(null,"Do you like America?");
+//        String showInputDialog = JOptionPane.showInputDialog(null, "No?");
+//        String Freedom = JOptionPane.showInputDialog("Freedom");
         
 
 	}

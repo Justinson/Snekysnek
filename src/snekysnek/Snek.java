@@ -5,12 +5,15 @@
  */
 package snekysnek;
 
+import audio.AudioPlayer;
 import environment.Environment;
 import grid.Grid;
 import images.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import images.ResourceTools;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
  * @author Justinson
  */
 class Snek extends Environment implements CellDataProviderIntf, MoveValidatorIntf {
-    
+
     Image image;
     int x;
     int y;
@@ -31,133 +34,46 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
 
     public Snek() {
 
-        grid = new Grid(25, 25, 20, 20, new Point(10, 50), Color.BLACK);
+        this.setBackground(ResourceTools.loadImageFromResource("snekysnek/goodbless.jpg"));
+
+        grid = new Grid(35, 25, 20, 20, new Point(10, 50), Color.BLACK);
         bob = new Presidential(Direction.LEFT, grid, this);
 
         barriers = new ArrayList<>();
         barriers.add(new Barrier(0, 0, Color.BLUE, this));
 
-        barriers.add(new Barrier(1, 0, Color.BLUE, this));
-        barriers.add(new Barrier(2, 0, Color.BLUE, this));
-        barriers.add(new Barrier(3, 0, Color.BLUE, this));
-        barriers.add(new Barrier(4, 0, Color.BLUE, this));
-        barriers.add(new Barrier(5, 0, Color.BLUE, this));
-        barriers.add(new Barrier(6, 0, Color.BLUE, this));
-        barriers.add(new Barrier(7, 0, Color.BLUE, this));
-        barriers.add(new Barrier(8, 0, Color.BLUE, this));
-        barriers.add(new Barrier(9, 0, Color.BLUE, this));
-        barriers.add(new Barrier(10, 0, Color.BLUE, this));
-        barriers.add(new Barrier(11, 0, Color.BLUE, this));
-        barriers.add(new Barrier(12, 0, Color.BLUE, this));
-        barriers.add(new Barrier(13, 0, Color.BLUE, this));
-        barriers.add(new Barrier(14, 0, Color.BLUE, this));
-        barriers.add(new Barrier(15, 0, Color.BLUE, this));
-        barriers.add(new Barrier(16, 0, Color.BLUE, this));
-        barriers.add(new Barrier(17, 0, Color.BLUE, this));
-        barriers.add(new Barrier(18, 0, Color.BLUE, this));
-        barriers.add(new Barrier(19, 0, Color.BLUE, this));
-        barriers.add(new Barrier(20, 0, Color.BLUE, this));
-        barriers.add(new Barrier(21, 0, Color.BLUE, this));
-        barriers.add(new Barrier(22, 0, Color.BLUE, this));
-        barriers.add(new Barrier(23, 0, Color.BLUE, this));
-        barriers.add(new Barrier(24, 0, Color.BLUE, this));
+//        items = new Arraylist<>();
+//        items.add(new Item(10, 5, "POWER_UP"))
+//                ResourceTools.loadImageFromResource("snekysnek/Trumpalive.png"),
+//                this));
+//<editor-fold defaultstate="collapsed" desc="Barriers">
+        createBarrierRange(0, 0, 0, grid.getRows() - 1, Color.WHITE);
+        createBarrierRange(grid.getColumns() - 1, 0, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
+        createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.WHITE);
+        createBarrierRange(0, grid.getRows() - 1, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
 
-        barriers.add(new Barrier(0, 1, Color.WHITE, this));
-        barriers.add(new Barrier(0, 2, Color.WHITE, this));
-        barriers.add(new Barrier(0, 3, Color.WHITE, this));
-        barriers.add(new Barrier(0, 3, Color.WHITE, this));
-        barriers.add(new Barrier(0, 3, Color.WHITE, this));
-        barriers.add(new Barrier(0, 3, Color.WHITE, this));
-        barriers.add(new Barrier(0, 4, Color.WHITE, this));
-        barriers.add(new Barrier(0, 5, Color.WHITE, this));
-        barriers.add(new Barrier(0, 6, Color.WHITE, this));
-        barriers.add(new Barrier(0, 7, Color.WHITE, this));
-        barriers.add(new Barrier(0, 8, Color.WHITE, this));
-        barriers.add(new Barrier(0, 9, Color.WHITE, this));
-        barriers.add(new Barrier(0, 10, Color.WHITE, this));
-        barriers.add(new Barrier(0, 11, Color.WHITE, this));
-        barriers.add(new Barrier(0, 12, Color.WHITE, this));
-        barriers.add(new Barrier(0, 13, Color.WHITE, this));
-        barriers.add(new Barrier(0, 14, Color.WHITE, this));
-        barriers.add(new Barrier(0, 15, Color.WHITE, this));
-        barriers.add(new Barrier(0, 16, Color.WHITE, this));
-        barriers.add(new Barrier(0, 17, Color.WHITE, this));
-        barriers.add(new Barrier(0, 18, Color.WHITE, this));
-        barriers.add(new Barrier(0, 19, Color.WHITE, this));
-        barriers.add(new Barrier(0, 20, Color.WHITE, this));
-        barriers.add(new Barrier(0, 21, Color.WHITE, this));
-        barriers.add(new Barrier(0, 22, Color.WHITE, this));
-        barriers.add(new Barrier(0, 23, Color.WHITE, this));
-        barriers.add(new Barrier(0, 24, Color.WHITE, this));
+//</editor-fold>
+        //
+    }
 
-     
-
-       
-        barriers.add(new Barrier(24, 1, Color.RED, this));
-        barriers.add(new Barrier(24, 2, Color.RED, this));
-        barriers.add(new Barrier(24, 3, Color.RED, this));
-        barriers.add(new Barrier(24, 4, Color.RED, this));
-        barriers.add(new Barrier(24, 5, Color.RED, this));
-        barriers.add(new Barrier(24, 6, Color.RED, this));
-        barriers.add(new Barrier(24, 7, Color.RED, this));
-        barriers.add(new Barrier(24, 8, Color.RED, this));
-        barriers.add(new Barrier(24, 9, Color.RED, this));
-        barriers.add(new Barrier(24, 10, Color.RED, this));
-        barriers.add(new Barrier(24, 11, Color.RED, this));
-        barriers.add(new Barrier(24, 12, Color.RED, this));
-        barriers.add(new Barrier(24, 13, Color.RED, this));
-        barriers.add(new Barrier(24, 14, Color.RED, this));
-        barriers.add(new Barrier(24, 15, Color.RED, this));
-        barriers.add(new Barrier(24, 16, Color.RED, this));
-        barriers.add(new Barrier(24, 17, Color.RED, this));
-        barriers.add(new Barrier(24, 18, Color.RED, this));
-        barriers.add(new Barrier(24, 19, Color.RED, this));
-        barriers.add(new Barrier(24, 20, Color.RED, this));
-        barriers.add(new Barrier(24, 21, Color.RED, this));
-        barriers.add(new Barrier(24, 22, Color.RED, this));
-        barriers.add(new Barrier(24, 23, Color.RED, this));
-        barriers.add(new Barrier(24, 24, Color.BLUE, this));
-
-        barriers.add(new Barrier(0, 24, Color.BLUE, this));
-        barriers.add(new Barrier(1, 24, Color.BLUE, this));
-        barriers.add(new Barrier(2, 24, Color.BLUE, this));
-        barriers.add(new Barrier(3, 24, Color.BLUE, this));
-        barriers.add(new Barrier(4, 24, Color.BLUE, this));
-        barriers.add(new Barrier(5, 24, Color.BLUE, this));
-        barriers.add(new Barrier(6, 24, Color.BLUE, this));
-        barriers.add(new Barrier(7, 24, Color.BLUE, this));
-        barriers.add(new Barrier(8, 24, Color.BLUE, this));
-        barriers.add(new Barrier(9, 24, Color.BLUE, this));
-        barriers.add(new Barrier(10, 24, Color.BLUE, this));
-        barriers.add(new Barrier(11, 24, Color.BLUE, this));
-        barriers.add(new Barrier(12, 24, Color.BLUE, this));
-        barriers.add(new Barrier(13, 24, Color.BLUE, this));
-        barriers.add(new Barrier(14, 24, Color.BLUE, this));
-        barriers.add(new Barrier(15, 24, Color.BLUE, this));
-        barriers.add(new Barrier(16, 24, Color.BLUE, this));
-        barriers.add(new Barrier(17, 24, Color.BLUE, this));
-        barriers.add(new Barrier(18, 24, Color.BLUE, this));
-        barriers.add(new Barrier(19, 24, Color.BLUE, this));
-        barriers.add(new Barrier(20, 24, Color.BLUE, this));
-        barriers.add(new Barrier(21, 24, Color.BLUE, this));
-        barriers.add(new Barrier(22, 24, Color.BLUE, this));
-        barriers.add(new Barrier(23, 24, Color.BLUE, this));
-        barriers.add(new Barrier(24, 24, Color.BLUE, this));
-
+    private void createBarrierRange(int startX, int startY, int endX, int endY, Color color) {
+        for (int x = startX; x <= endX; x++) {
+            for (int y = startY; y <= endY; y++) {
+                barriers.add(new Barrier(x, y, color, this));
+            }
+        }
     }
 
     @Override
     public void initializeEnvironment() {
-        
-       
     }
 
     int moveDelay = 0;
-    int moveDelayLimit = 3;
+    int moveDelayLimit = 1;
 
     @Override
     public void timerTaskHandler() {
-//        System.out.println("Hey" + ++counter);
+//        System.out.println("Hey" + ++counter);`
 
         if (bob != null) {
             if (moveDelay >= moveDelayLimit) {
@@ -186,6 +102,9 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             bob.setDirection(Direction.DOWN);
             bob.move();
+
+//        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+//            AudioPlayer.play("/snekysnek/Pickaxe.wav");
         }
     }
 
@@ -203,7 +122,6 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         if (e.getKeyCode() == KeyEvent.VK_D) {
             System.out.println("GO RIGHT");
         }
-
     }
 
     @Override
@@ -228,7 +146,9 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
                 barriers.get(i).draw(graphics);
             }
 
-//            barriers.draw(graphics);
+//            if (items != null) {
+//                for (int i = 0; i < items.size(); i++) {
+//                    items.get(i).draw(graphics);
         }
 
     }
@@ -266,7 +186,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         return proposedLocation;
 
     }
-}
 
+}
 //</editor-fold>
 

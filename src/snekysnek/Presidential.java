@@ -16,7 +16,21 @@ import java.util.ArrayList;
  * @author Justinson
  */
 public class Presidential {
-    private final MoveValidatorIntf validator;
+
+    /**
+     * @return the HEAD_POSITION
+     */
+    public static int getHEAD_POSITION() {
+        return HEAD_POSITION;
+    }
+
+    /**
+     * @param aHEAD_POSITION the HEAD_POSITION to set
+     */
+    public static void setHEAD_POSITION(int aHEAD_POSITION) {
+        HEAD_POSITION = aHEAD_POSITION;
+    }
+    private MoveValidatorIntf validator;
 
     public Presidential(Direction direction, Grid grid, MoveValidatorIntf validator) {
         
@@ -43,18 +57,21 @@ public class Presidential {
     public void draw(Graphics graphics) {
         graphics.setColor(getBodyColor());
         for (int i = 0; i < getBody().size(); i++) {
-//            System.out.println("body location = " + body.get(i).toString());
+////            System.out.println("body location = " + body.get(i).toString());
             graphics.fillOval(getGrid().getCellSystemCoordinate(getBody().get(i)).x,
                     getGrid().getCellSystemCoordinate(getBody().get(i)).y,
                     getGrid().getCellWidth(),
                     getGrid().getCellHeight());
+            
+            
+            
             
 
         }
 
     }
 
-    public static final int HEAD_POSITION = 0;
+    private static int HEAD_POSITION = 0;
 
     public void move() {
         //making a copy of the current head location        
@@ -70,16 +87,22 @@ public class Presidential {
             newHead.y--;
         }
         //add new head
-        body.add(HEAD_POSITION, validator.validateMove(newHead));
+        getBody().add(getHEAD_POSITION(), getValidator().validateMove(newHead));
 
         //DELETE TAIL
-        body.remove(body.size() - 1);
+        getBody().remove(getBody().size() - 1);
 
+    
+    {
         
-    }
+    
+   
+}
+    
+}
 
     public Point getHead() {
-        return getBody().get(HEAD_POSITION);
+        return getBody().get(getHEAD_POSITION());
     }
 
     /**
@@ -138,6 +161,20 @@ public class Presidential {
      */
     public void setBodyColor(Color bodyColor) {
         this.bodyColor = bodyColor;
+    }
+
+    /**
+     * @return the validator
+     */
+    public MoveValidatorIntf getValidator() {
+        return validator;
+    }
+
+    /**
+     * @param validator the validator to set
+     */
+    public void setValidator(MoveValidatorIntf validator) {
+        this.validator = validator;
     }
 
 }
