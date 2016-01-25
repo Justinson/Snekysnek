@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import images.ResourceTools;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,8 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     private Grid grid;
     private Presidential bob;
     private ArrayList<Barrier> barriers;
+    private ArrayList<Item> items;
+    private int score;
 
     public Snek() {
 
@@ -43,7 +46,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         barriers.add(new Barrier(0, 0, Color.BLUE, this));
 
 //        items = new Arraylist<>();
-//        items.add(new Item(10, 5, "POWER_UP"))
+//        items.add(new Item(10, 5, Item., this, this));
 //                ResourceTools.loadImageFromResource("snekysnek/Trumpalive.png"),
 //                this));
 //<editor-fold defaultstate="collapsed" desc="Barriers">
@@ -69,7 +72,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     }
 
     int moveDelay = 0;
-    int moveDelayLimit = 1;
+    int moveDelayLimit = 2;
 
     @Override
     public void timerTaskHandler() {
@@ -146,11 +149,10 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
                 barriers.get(i).draw(graphics);
             }
 
-//            if (items != null) {
-//                for (int i = 0; i < items.size(); i++) {
-//                    items.get(i).draw(graphics);
         }
-
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Calibri", Font.BOLD, 25));
+        graphics.drawString("Score: " + score, 10, 20);
     }
 
 //<editor-fold defaultstate="collapsed" desc="CellDataProviderIntf">
@@ -178,15 +180,20 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     //<editor-fold defaultstate="collapsed" desc="MoveValidatorIntf">
     @Override
     public Point validateMove(Point proposedLocation) {
-        //if the x value of the head location is less than 0
         if (proposedLocation.x < 0) {
-            System.out.println("You dead");
+            proposedLocation.x = grid.getColumns() - 1;
+
+        } else if (proposedLocation.x > grid.getColumns() - 1) {
+            proposedLocation.x = 0;
+        } else if (proposedLocation.y < 0) {
+            proposedLocation.y = grid.getRows() - 1;
+        } else if (proposedLocation.y > grid.getRows() - 1) {
+            proposedLocation.y = 0;
 
         }
+
         return proposedLocation;
 
     }
 
 }
-//</editor-fold>
-

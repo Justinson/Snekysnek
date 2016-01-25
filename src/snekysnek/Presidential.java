@@ -33,7 +33,7 @@ public class Presidential {
     private MoveValidatorIntf validator;
 
     public Presidential(Direction direction, Grid grid, MoveValidatorIntf validator) {
-        
+
         this.direction = direction;
         this.grid = grid;
         this.validator = validator;
@@ -62,10 +62,6 @@ public class Presidential {
                     getGrid().getCellSystemCoordinate(getBody().get(i)).y,
                     getGrid().getCellWidth(),
                     getGrid().getCellHeight());
-            
-            
-            
-            
 
         }
 
@@ -92,14 +88,11 @@ public class Presidential {
         //DELETE TAIL
         getBody().remove(getBody().size() - 1);
 
-    
-    {
-        
-    
-   
-}
-    
-}
+        {
+
+        }
+
+    }
 
     public Point getHead() {
         return getBody().get(getHEAD_POSITION());
@@ -108,8 +101,6 @@ public class Presidential {
     /**
      * @return the direction
      */
-    
-    
     public Direction getDirection() {
         return direction;
     }

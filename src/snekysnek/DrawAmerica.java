@@ -24,6 +24,7 @@ public class DrawAmerica extends Environment {
     public void initializeEnvironment() {
         image = ResourceTools.loadImageFromResource("snekysnek/godblessamerica.jpg");
         
+        
     }
 
     @Override
