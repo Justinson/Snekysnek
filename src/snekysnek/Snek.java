@@ -152,7 +152,8 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         }
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Calibri", Font.BOLD, 25));
-        graphics.drawString("Score: " + score, 10, 20);
+        graphics.drawString("Score: " + score++, 10, 20);
+        
     }
 
 //<editor-fold defaultstate="collapsed" desc="CellDataProviderIntf">
@@ -195,5 +196,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         return proposedLocation;
 
     }
-
+    
+   
 }
+
