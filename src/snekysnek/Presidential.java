@@ -57,12 +57,10 @@ public class Presidential {
     public void draw(Graphics graphics) {
         graphics.setColor(getBodyColor());
         for (int i = 0; i < getBody().size(); i++) {
-//            System.out.println("body location = " + body.get(i).toString());
             graphics.fillOval(getGrid().getCellSystemCoordinate(getBody().get(i)).x,
                     getGrid().getCellSystemCoordinate(getBody().get(i)).y,
                     getGrid().getCellWidth(),
                     getGrid().getCellHeight());
-            
 
         }
 

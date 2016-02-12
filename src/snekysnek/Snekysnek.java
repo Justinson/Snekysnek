@@ -20,13 +20,5 @@ public class Snekysnek {
     public static void main(String[] args) {
         // TODO code application logic here
         ApplicationStarter.run("Presidential Snake", new Snek());
-//        JOptionPane.showMessageDialog(null,"Do you like America?");
-//        String showInputDialog = JOptionPane.showInputDialog(null, "No?");
-//        String Freedom = JOptionPane.showInputDialog("Freedom");
-        
-
-	}
+    }
 }
-    
-    
-

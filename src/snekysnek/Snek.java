@@ -6,6 +6,10 @@
 package snekysnek;
 
 import audio.AudioPlayer;
+import audio.Playlist;
+import audio.SoundManager;
+import audio.Source;
+import audio.Track;
 import environment.Environment;
 import grid.Grid;
 import images.ResourceTools;
@@ -40,31 +44,39 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         this.setBackground(ResourceTools.loadImageFromResource("snekysnek/goodbless.jpg"));
 
         grid = new Grid(35, 25, 20, 20, new Point(10, 50), Color.BLACK);
-        bob = new Presidential(Direction.LEFT, grid, this);
+        bob = new Presidential(Direction.RIGHT, grid, this);
 
         barriers = new ArrayList<>();
         barriers.add(new Barrier(0, 0, Color.BLUE, this));
-
-//        items = new Arraylist<>();
-//        items.add(new Item(10, 5, Item., this, this));
-//                ResourceTools.loadImageFromResource("snekysnek/Trumpalive.png"),
-//                this));
-//<editor-fold defaultstate="collapsed" desc="Barriers">
         createBarrierRange(0, 0, 0, grid.getRows() - 1, Color.WHITE);
         createBarrierRange(grid.getColumns() - 1, 0, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
         createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.WHITE);
         createBarrierRange(0, grid.getRows() - 1, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
-
-//</editor-fold>
-        //
+        setUpSound();
     }
 
+    SoundManager soundManager;
+    public static final String SOUND_PICKAXE = "PICKAXE";
+
+    private void setUpSound() {
+        //set up a list of tracks in a playlist
+        ArrayList<Track> tracks = new ArrayList<>();
+        tracks.add(new Track("SOUND_PICKAXE", Source.RESOURCE, "/snekysnek/Pickaxe.wav"));
+
+        Playlist playlist = new Playlist(tracks);
+        //pass the playlist to a sound manager
+        soundManager = new SoundManager(playlist);
+
+    }
     private void createBarrierRange(int startX, int startY, int endX, int endY, Color color) {
         for (int x = startX; x <= endX; x++) {
             for (int y = startY; y <= endY; y++) {
                 barriers.add(new Barrier(x, y, color, this));
+
             }
+
         }
+
     }
 
     @Override
@@ -76,7 +88,6 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
 
     @Override
     public void timerTaskHandler() {
-//        System.out.println("Hey" + ++counter);`
 
         if (bob != null) {
             if (moveDelay >= moveDelayLimit) {
@@ -102,12 +113,10 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             bob.setDirection(Direction.UP);
             bob.move();
+            soundManager.play(SOUND_PICKAXE, 3);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             bob.setDirection(Direction.DOWN);
             bob.move();
-
-//        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-//            AudioPlayer.play("/snekysnek/Pickaxe.wav");
         }
     }
 
@@ -153,7 +162,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Calibri", Font.BOLD, 25));
         graphics.drawString("Score: " + score++, 10, 20);
-        
+
     }
 
 //<editor-fold defaultstate="collapsed" desc="CellDataProviderIntf">
@@ -178,7 +187,7 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="MoveValidatorIntf">
+
     @Override
     public Point validateMove(Point proposedLocation) {
         if (proposedLocation.x < 0) {
@@ -196,7 +205,5 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         return proposedLocation;
 
     }
-    
-   
-}
 
+}
