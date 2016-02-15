@@ -36,7 +36,6 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     private Grid grid;
     private Presidential bob;
     private ArrayList<Barrier> barriers;
-    private ArrayList<Item> items;
     private int score;
 
     public Snek() {
@@ -107,13 +106,14 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             bob.setDirection(Direction.LEFT);
             bob.move();
+            
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             bob.setDirection(Direction.RIGHT);
             bob.move();
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             bob.setDirection(Direction.UP);
             bob.move();
-            soundManager.play(SOUND_PICKAXE, 3);
+//            soundManager.play(SOUND_PICKAXE, 3);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             bob.setDirection(Direction.DOWN);
             bob.move();
