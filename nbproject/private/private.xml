@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Candidate.java</file>
+            <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Votes.java</file>
             <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Presidential.java</file>
-            <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Barrier.java</file>
+            <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Election.java</file>
             <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Snekysnek.java</file>
-            <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/CellDataProviderIntf.java</file>
-            <file>file:/Users/Justinson/NetBeansProjects/Snekysnek/src/snekysnek/Snek.java</file>
         </group>
     </open-files>
 </project-private>

@@ -38,7 +38,6 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
     private ArrayList<Barrier> barriers;
     private int score;
     private ArrayList<Votes> votes;
-    
 
     public Election() {
         this.setBackground(ResourceTools.loadImageFromResource("snekysnek/goodbless.jpg"));
@@ -53,19 +52,19 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
         createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.BLUE);
         createBarrierRange(0, grid.getRows() - 1, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
         setUpSound();
-        
+
         votes = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            votes.add(new Votes(getRandomGridLocation(), getRandomInt(1, 17), this));
+            votes.add(new Votes(getRandomGridLocation(), getRandomInt(1, 9), this));
         }
-        
+
     }
-    
-    public Point getRandomGridLocation(){
+
+    public Point getRandomGridLocation() {
         return new Point(getRandomInt(1, grid.getColumns() - 2), getRandomInt(1, grid.getRows() - 2));
     }
-    
-    public int getRandomInt(int min, int max){
+
+    public int getRandomInt(int min, int max) {
         return (int) (min + (Math.random() * (max - min + 1)));
     }
 
@@ -81,7 +80,7 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
         //pass the playlist to a sound manager
         soundManager = new SoundManager(playlist);
     }
-    
+
     private void createBarrierRange(int startX, int startY, int endX, int endY, Color color) {
         for (int x = startX; x <= endX; x++) {
             for (int y = startY; y <= endY; y++) {
@@ -118,7 +117,7 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             bob.setDirection(Direction.LEFT);
             bob.move();
-            
+
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             bob.setDirection(Direction.RIGHT);
             bob.move();
@@ -169,17 +168,16 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
                 barriers.get(i).draw(graphics);
             }
         }
-        
+
         if (votes != null) {
             for (Votes vote : votes) {
                 vote.draw(graphics);
             }
         }
-        
-        
+
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Calibri", Font.BOLD, 25));
-        graphics.drawString("Score: " + score++, 10, 20);
+        graphics.drawString("VOTES: " + score++, 10, 20);
 
     }
 
@@ -204,7 +202,6 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
         return grid.getCellSystemCoordinate(x, y).y;
     }
 //</editor-fold>
-
 
     @Override
     public Point validateMove(Point proposedLocation) {
