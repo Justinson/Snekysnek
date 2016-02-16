@@ -28,7 +28,7 @@ import java.util.ArrayList;
  *
  * @author Justinson
  */
-class Snek extends Environment implements CellDataProviderIntf, MoveValidatorIntf {
+class Election extends Environment implements CellDataProviderIntf, MoveValidatorIntf {
 
     Image image;
     int x;
@@ -37,8 +37,10 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     private Presidential bob;
     private ArrayList<Barrier> barriers;
     private int score;
+    private ArrayList<Votes> votes;
+    
 
-    public Snek() {
+    public Election() {
 
         this.setBackground(ResourceTools.loadImageFromResource("snekysnek/goodbless.jpg"));
 
@@ -52,6 +54,10 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.WHITE);
         createBarrierRange(0, grid.getRows() - 1, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
         setUpSound();
+        
+        votes = new ArrayList<>();
+        votes.add(new Votes(3, 6, 5, this));
+        votes.add(new Votes(10, 16, 2, this));
     }
 
     SoundManager soundManager;
@@ -65,17 +71,14 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
         Playlist playlist = new Playlist(tracks);
         //pass the playlist to a sound manager
         soundManager = new SoundManager(playlist);
-
     }
+    
     private void createBarrierRange(int startX, int startY, int endX, int endY, Color color) {
         for (int x = startX; x <= endX; x++) {
             for (int y = startY; y <= endY; y++) {
                 barriers.add(new Barrier(x, y, color, this));
-
             }
-
         }
-
     }
 
     @Override
@@ -146,7 +149,6 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
     public void paintEnvironment(Graphics graphics) {
         if (grid != null) {
             grid.paintComponent(graphics);
-
         }
 
         if (bob != null) {
@@ -157,8 +159,15 @@ class Snek extends Environment implements CellDataProviderIntf, MoveValidatorInt
             for (int i = 0; i < barriers.size(); i++) {
                 barriers.get(i).draw(graphics);
             }
-
         }
+        
+        if (votes != null) {
+            for (Votes vote : votes) {
+                vote.draw(graphics);
+            }
+        }
+        
+        
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Calibri", Font.BOLD, 25));
         graphics.drawString("Score: " + score++, 10, 20);

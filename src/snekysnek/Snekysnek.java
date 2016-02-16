@@ -19,6 +19,6 @@ public class Snekysnek {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ApplicationStarter.run("Presidential Snake", new Snek());
+        ApplicationStarter.run("Presidential Snake", new Election());
     }
 }
