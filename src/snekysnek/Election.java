@@ -41,7 +41,6 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
     
 
     public Election() {
-
         this.setBackground(ResourceTools.loadImageFromResource("snekysnek/goodbless.jpg"));
 
         grid = new Grid(35, 25, 20, 20, new Point(10, 50), Color.BLACK);
@@ -49,15 +48,25 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
 
         barriers = new ArrayList<>();
         barriers.add(new Barrier(0, 0, Color.BLUE, this));
-        createBarrierRange(0, 0, 0, grid.getRows() - 1, Color.WHITE);
-        createBarrierRange(grid.getColumns() - 1, 0, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
-        createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.WHITE);
+        createBarrierRange(0, 0, 0, grid.getRows() - 1, Color.RED);
+        createBarrierRange(grid.getColumns() - 1, 0, grid.getColumns() - 1, grid.getRows() - 1, Color.BLUE);
+        createBarrierRange(0, 0, grid.getColumns() - 1, 0, Color.BLUE);
         createBarrierRange(0, grid.getRows() - 1, grid.getColumns() - 1, grid.getRows() - 1, Color.WHITE);
         setUpSound();
         
         votes = new ArrayList<>();
-        votes.add(new Votes(3, 6, 5, this));
-        votes.add(new Votes(10, 16, 2, this));
+        for (int i = 0; i < 10; i++) {
+            votes.add(new Votes(getRandomGridLocation(), getRandomInt(1, 17), this));
+        }
+        
+    }
+    
+    public Point getRandomGridLocation(){
+        return new Point(getRandomInt(1, grid.getColumns() - 2), getRandomInt(1, grid.getRows() - 2));
+    }
+    
+    public int getRandomInt(int min, int max){
+        return (int) (min + (Math.random() * (max - min + 1)));
     }
 
     SoundManager soundManager;

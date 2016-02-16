@@ -7,6 +7,7 @@ package snekysnek;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 
 /**
  *
@@ -18,6 +19,13 @@ public class Votes {
     public Votes(int x, int y, int voteCount, CellDataProviderIntf cellData){
         this.x = x;
         this.y = y;
+        this.voteCount = voteCount;
+        this.cellData = cellData;
+    }
+    
+    public Votes(Point location, int voteCount, CellDataProviderIntf cellData){
+        this.x = location.x;
+        this.y = location.y;
         this.voteCount = voteCount;
         this.cellData = cellData;
     }
