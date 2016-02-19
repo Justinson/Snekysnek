@@ -14,7 +14,6 @@ import java.awt.Image;
  */
 public class Candidate {
 
-
     //move method
     //constructor method
 //    public Candidate(int x, int y, Image, image, CellDataProviderIntf cellData){
@@ -24,24 +23,23 @@ public class Candidate {
 //        this.cellData = cellData
 //                
 //    }
-    
     //draw method
-    public void draw(Graphics graphics){
-       
-        
+    public void draw(Graphics graphics) {
+
     }
     //<editor-fold defaultstate="collapsed" desc="Properties">
     private int x;
     private int y;
     private Image image;
     private CellDataProviderIntf cellData;
+
     /**
      * @return the x
      */
     public int getX() {
         return x;
     }
-    
+
     /**
      * @return the y
      */

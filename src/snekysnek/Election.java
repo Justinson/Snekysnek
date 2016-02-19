@@ -175,7 +175,7 @@ class Election extends Environment implements CellDataProviderIntf, MoveValidato
             }
         }
 
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(Color.YELLOW);
         graphics.setFont(new Font("Calibri", Font.BOLD, 25));
         graphics.drawString("VOTES: " + score++, 10, 20);
 

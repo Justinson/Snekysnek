@@ -6,7 +6,6 @@
 package snekysnek;
 
 import environment.ApplicationStarter;
-import javax.swing.JOptionPane;
 
 /**
  *

@@ -85,8 +85,7 @@ public class Presidential {
         getBody().add(getHEAD_POSITION(), getValidator().validateMove(newHead));
 
         //DELETE TAIL
-        getBody().remove(getBody().size() - 1);
-
+        getBody().remove(getBody().size() -1);
         {
 
         }
